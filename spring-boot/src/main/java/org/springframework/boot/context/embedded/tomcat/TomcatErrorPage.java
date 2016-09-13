@@ -74,7 +74,7 @@ class TomcatErrorPage {
 
 	public void addToContext(Context context) {
 		Assert.state(this.nativePage != null,
-				"Neither Tomcat 7 nor 8 detected so no native error page exists");
+				"No Tomcat 8 detected so no native error page exists");
 		if (ClassUtils.isPresent(ERROR_PAGE_CLASS, null)) {
 			org.apache.tomcat.util.descriptor.web.ErrorPage errorPage = (org.apache.tomcat.util.descriptor.web.ErrorPage) this.nativePage;
 			errorPage.setLocation(this.location);

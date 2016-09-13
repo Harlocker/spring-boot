@@ -319,14 +319,7 @@ public class TomcatEmbeddedServletContainer implements EmbeddedServletContainer 
 	}
 
 	private Object getNamingToken(Context context) {
-		try {
 			return context.getNamingToken();
-		}
-		catch (NoSuchMethodError ex) {
-			// Use the context itself on Tomcat 7
-			return context;
-		}
-
 	}
 
 }

@@ -63,22 +63,6 @@ class SkipPatternJarScanner extends StandardJarScanner {
 		}
 	}
 
-	// For Tomcat 7 compatibility
-	public void scan(ServletContext context, ClassLoader classloader,
-			JarScannerCallback callback, Set<String> jarsToSkip) {
-		Method scanMethod = ReflectionUtils.findMethod(this.jarScanner.getClass(), "scan",
-				ServletContext.class, ClassLoader.class, JarScannerCallback.class,
-				Set.class);
-		Assert.notNull(scanMethod, "Unable to find scan method");
-		try {
-			scanMethod.invoke(this.jarScanner, context, classloader, callback,
-					(jarsToSkip == null ? this.pattern.asSet() : jarsToSkip));
-		}
-		catch (Exception ex) {
-			throw new IllegalStateException("Tomcat 7 reflection failed", ex);
-		}
-	}
-
 	/**
 	 * Apply this decorator the specified context.
 	 * @param context the context to apply to
